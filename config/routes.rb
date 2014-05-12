@@ -1,5 +1,8 @@
 Splurge::Application.routes.draw do
+  resources :restaurants
   root 'welcome#index'
+  match '/register',  to: 'restaurants#new', via: 'get'
+  match '/login',  to: 'restaurants#login', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
