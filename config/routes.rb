@@ -1,4 +1,5 @@
 Splurge::Application.routes.draw do
+  get "restaurants/new"
   resources :restaurants
   root 'welcome#index'
   match '/register',  to: 'restaurants#new', via: 'get'

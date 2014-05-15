@@ -3,5 +3,17 @@
   The time is now: <%= Time.now %>
 </p>
 
-<%=# paths helpers are automatically created for resources %>
-<%=# http://guides.rubyonrails.org/routing.html %>
+
+<p>
+  <%# guides.rubyonrails.org/routing.html explains helper paths%>
+  <%= link_to "Register", new_restaurant_path, class: "btn btn-large btn-primary" %>
+</p>
+
+<p>
+  <%= link_to "Login", 
+
+<% if false %>
+  <%# annoyingly this is how you multiline comment in html.erb
+  doo doo doo
+  %>
+<% end %>
