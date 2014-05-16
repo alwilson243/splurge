@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515211801) do
+ActiveRecord::Schema.define(version: 20140515234937) do
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20140515211801) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.string   "remember_token"
   end
+
+  add_index "restaurants", ["remember_token"], name: "index_restaurants_on_remember_token"
 
 end

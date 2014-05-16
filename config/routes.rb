@@ -1,9 +1,10 @@
 Splurge::Application.routes.draw do
   resources :restaurants
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
   root 'welcome#index'
   match '/register',  to: 'restaurants#new', via: 'get'
-  match '/login',  to: 'restaurants#login', via: 'get'
+  match '/signin',  to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#delete',     via: 'delete'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
