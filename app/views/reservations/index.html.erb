@@ -1,0 +1,12 @@
+<% provide(:title, 'Reservations') %>
+<h1>Reservations</h1>
+<h2>
+  Below are your reservations:
+</h2>
+<hr>
+  <% @reservations.each do |reservation| %>
+ 	 <p>
+  		<%= reservation.name %>: <%= reservation.party_size %> at 
+  		<%= reservation.meal_time %> since <%= reservation.created_at %>
+  	</p>
+  <% end %>
