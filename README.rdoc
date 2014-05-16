@@ -1,28 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Problems with Heroku can be caused by not running
 
-Things you may want to cover:
+  heroku run rake db:migrate
+  
+which updates the heroku/production/postgres database with local/sqlite3 changes. Another tip I read is to precompile assets locally
+if the custom CSS is taking too long to load. This can be done by running
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+  RAILS_ENV=production bundle exec rake assets:precompile
+  git push heroku master
+  heroku open
+  
