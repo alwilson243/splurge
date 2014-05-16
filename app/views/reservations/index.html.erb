@@ -5,8 +5,11 @@
 </h2>
 <hr>
   <% @reservations.each do |reservation| %>
- 	 <p>
+ 	<p>
   		<%= reservation.name %>: <%= reservation.party_size %> at 
   		<%= reservation.meal_time %> since <%= reservation.created_at %>
+  		<!--link_to "Edit", edit_reservation_path(reservation) -->
   	</p>
   <% end %>
+  <hr>
+  <p><%= link_to "Add a New Reservation", new_reservation_path %></p>

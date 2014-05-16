@@ -1,7 +1,7 @@
 Splurge::Application.routes.draw do
   resources :restaurants
   resources :sessions, only: [:new, :create, :destroy]
-  resources :reservations, only: [:index]
+  resources :reservations
   root 'welcome#index'
   match '/register',  to: 'restaurants#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
