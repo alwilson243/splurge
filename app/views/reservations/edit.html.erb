@@ -1,1 +1,19 @@
 <h1>Edit Reservation</h1>
+<%= form_for @reservation do |f| %>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label :party_size %>
+		<%= f.text_field :party_size %>
+	</p>
+	<p>
+		<%= f.label "Date and Time" %>
+		<%= f.label "yyyy-mm-dd hh:mm:ss" %>
+		<%= f.text_field :meal_time %>
+	</p>
+	<p>
+		<%= f.submit "Update" %>
+	</p>
+<% end %>

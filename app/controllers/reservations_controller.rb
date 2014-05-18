@@ -12,8 +12,7 @@ class ReservationsController < ApplicationController
       end
 
       def create  # Handles creating the new post
-        @reservation = Reservation.new(params.require(:reservation).permit(
-          :name, :party_size, :meal_time))
+        @reservation = Reservation.new(reservation_params )
 
         if @reservation.save
           redirect_to reservations_path, :notice => "Your reservation was saved!"
@@ -23,20 +22,27 @@ class ReservationsController < ApplicationController
       end
 
       def edit    # form for editing the post
-        @post = Post.find(params[:id])
+        @reservation = Reservation.find(params[:id])
       end
 
       def update  # update submits changes to the database
-
+        @reservation = Reservation.find(params[:id])
+          if @reservation.update_attributes(reservation_params)
+            redirect_to reservations_path, :notice =>"Reservation updated"
+          else
+            render "edit"
+          end
       end
 
       def destroy # deletes the post
-
+        @reservation = Reservation.find(params[:id])
+        @reservation.destroy
+        redirect_to reservations_path, :notice =>"Reservation deleted"
       end 
      
      private
 
-     def post_params #specifies a post's attributes
+     def reservation_params #specifies a post's attributes
          params.require(:reservation).permit(:name, :party_size, 
          	:meal_time)
      end
