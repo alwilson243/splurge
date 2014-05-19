@@ -1,4 +1,7 @@
 class Restaurant < ActiveRecord::Base
+
+  has_many :reservations
+
   before_save {self.name = name.downcase}
   before_create :create_remember_token
   validates :name, presence: true, uniqueness: {case_sensitive:false}

@@ -1,5 +1,9 @@
 <h1>Add a New Reservation</h1>
 <%= form_for @reservation do |f| %>
+    <p>
+    	<%= f.label :restaurant %>
+    	<%= f.text_field :restaurants_id %>
+    </p>
 	<p>
 		<%= f.label :name %>
 		<%= f.text_field :name %>

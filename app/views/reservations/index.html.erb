@@ -7,7 +7,8 @@
 <center>
 <table>
  	<tr>
- 		<th style="width:20%">Name</th>
+    <th style="width:5%">R_ID</th>
+ 		<th style="width:15%">Name</th>
  		<th style="width:10%">Party</th>
  		<th style="width:30%">Date and Time</th>
  		<th style="width:30%">Submission Time</th>
@@ -16,6 +17,7 @@
   	<% @reservations.each do |reservation| %>
  	<p>
  		<tr>
+      <td><%= reservation.restaurants_id %></td>
   		<td><%= reservation.name %></td> 
   		<td><%= reservation.party_size %> </td>
   		<td><%= reservation.meal_time %></td>
