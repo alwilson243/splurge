@@ -1,8 +1,12 @@
 <% provide(:title, 'Reservations') %>
 <h1>Reservations</h1>
+<% if signed_in? %>
 <h2>
   Below are your reservations:
 </h2>
+<% if current_reservations.length == 0 %>
+  <h3> no reservations </h3>
+<% end %>
 <hr>
 <center>
 <table>
@@ -14,7 +18,7 @@
  		<th style="width:30%">Submission Time</th>
  		<th style="width:10%">Modify</th>
  	</tr>
-  	<% @reservations.each do |reservation| %>
+  	<% current_reservations.each do |reservation| %>
  	<p>
  		<tr>
       <td><%= reservation.restaurants_id %></td>
@@ -32,3 +36,6 @@
 </center>
 <hr>
 <p><%= link_to "Add a New Reservation", new_reservation_path %></p>
+<% else %>
+  you are not logged in
+<% end %>

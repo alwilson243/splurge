@@ -1,2 +1,6 @@
-<% provide(:title, @restaurant.name) %>
-<h1><%= @restaurant.name %></h1>
+<% provide(:title, @restaurant.id) %>
+<h1>
+  restaurant id is:
+  <%= @restaurant.id %>
+</h1>
+<p><%= link_to "View Reservations", reservations_path %></p>

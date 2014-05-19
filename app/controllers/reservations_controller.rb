@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
       def index   # home page of the blog
-      	@reservations = Reservation.all
+        @reservations = Reservation.all
       end
-
-      def show    # shows an individual post
+      
+      def show    # shows an individual post (never called)
         @reservation = Reservation.find(params[:id])
       end
 
