@@ -1,5 +1,8 @@
 == README
 
+URL at: http://thawing-cliffs-1703.herokuapp.com/
+
+
 Problems with Heroku can be caused by not running
 
   heroku run rake db:migrate
