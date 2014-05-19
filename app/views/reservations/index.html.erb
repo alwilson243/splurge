@@ -4,14 +4,29 @@
   Below are your reservations:
 </h2>
 <hr>
-  <% @reservations.each do |reservation| %>
+<center>
+<table>
+ 	<tr>
+ 		<th style="width:20%">Name</th>
+ 		<th style="width:10%">Party</th>
+ 		<th style="width:30%">Date and Time</th>
+ 		<th style="width:30%">Submission Time</th>
+ 		<th style="width:10%">Modify</th>
+ 	</tr>
+  	<% @reservations.each do |reservation| %>
  	<p>
-  		<%= reservation.name %>: <%= reservation.party_size %> at 
-  		<%= reservation.meal_time %> since <%= reservation.created_at %>
-  		<%= link_to "Edit", edit_reservation_path(reservation) %>
-  		<%= link_to "Delete", reservation, :confirm => "Are you sure?", 
-  			:method => :delete %>
+ 		<tr>
+  		<td><%= reservation.name %></td> 
+  		<td><%= reservation.party_size %> </td>
+  		<td><%= reservation.meal_time %></td>
+  		<td><%= reservation.created_at %></td>
+  		<td><%= link_to "Edit", edit_reservation_path(reservation) %> | 
+  			<%= link_to "Delete", reservation, :confirm => "Are you sure?",
+  			:method => :delete %></td>
+  		</tr>
   	</p>
   <% end %>
-  <hr>
-  <p><%= link_to "Add a New Reservation", new_reservation_path %></p>
+</table>
+</center>
+<hr>
+<p><%= link_to "Add a New Reservation", new_reservation_path %></p>
