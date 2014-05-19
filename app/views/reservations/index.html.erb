@@ -6,6 +6,7 @@
 <hr>
   <% @reservations.each do |reservation| %>
  	<p>
+      restaurant id is <%= reservation.restaurants_id %>
   		<%= reservation.name %>: <%= reservation.party_size %> at 
   		<%= reservation.meal_time %> since <%= reservation.created_at %>
   		<%= link_to "Edit", edit_reservation_path(reservation) %>

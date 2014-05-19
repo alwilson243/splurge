@@ -1,4 +1,4 @@
-class AddIndexToRestaurantsName < ActiveRecord::Migration
+class AddRestaurantToReservations < ActiveRecord::Migration
   def change
   end
 end
