@@ -1,6 +1,7 @@
 class Restaurant < ActiveRecord::Base
 
   has_many :reservations
+  has_many :dine_outs
 
   before_save {self.name = name.downcase}
   before_create :create_remember_token

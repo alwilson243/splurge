@@ -1,6 +1,18 @@
 <% provide(:title, @restaurant.id) %>
 <h1>
-  restaurant id is:
-  <%= @restaurant.id %>
+	<%= @restaurant.name.upcase %>
 </h1>
-<p><%= link_to "View Reservations", reservations_path %></p>
+<h2>
+  Your Restaurant ID is:
+  <%= @restaurant.id %>
+  <br>
+  Your address is:
+  <%= @restaurant.address %>
+  <br>
+  Your phone number is:
+  <%= @restaurant.phone %>
+</h2>
+<p><%= link_to "View Reservations", reservations_path %>
+	<br>
+   <%= link_to "View Dine Out Orders", "#" %>
+</p>

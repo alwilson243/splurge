@@ -5,7 +5,7 @@
   Below are your reservations:
 </h2>
 <% if current_reservations.length == 0 %>
-  <h3> no reservations </h3>
+  <h3> No Reservations </h3>
 <% end %>
 <hr>
 <center>
@@ -37,5 +37,5 @@
 <hr>
 <p><%= link_to "Add a New Reservation", new_reservation_path %></p>
 <% else %>
-  you are not logged in
+  You are not logged in.
 <% end %>
