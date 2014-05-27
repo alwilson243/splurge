@@ -23,20 +23,27 @@ class ReservationsController < ApplicationController
                 redirect_to reservations_path, :notice => "Your reservtion was saved!" 
               }
               format.json { 
-                render :json => '{"pass?" : "true", "id" : "' << @reservation.id.inspect << '", "msg: "Reservation made!"}',
+                render :json => '{"pass?" : "true", "resv_id" : "' << @reservation.id.inspect << '", "msg: "Reservation made!"}',
                 status: :created
               }
             else
-              # render "new"
-              format.html { render "new", notice: "There was an error in the reservation" }
-              format.json { render '{"pass?" : "false", "id" : "-1", "msg" : "Error in reservation"}', status: :unprocessable_entity }
+              format.html { 
+                render "new", 
+                notice: "There was an error in the reservation" 
+              }
+              format.json { 
+                render :json => '{"pass?" : "false", "resv_id" : "-1", "msg" : "Error in reservation"}', 
+                status: :unprocessable_entity
+              }
             end
           else
             #Notify that there are no blocks left
             format.html {
               redirect_to reservations_path, :notice => "Sorry! All reservations for that time block are filled"
             }
-            format.json { render '{"pass?" : "false", "id" : "-1", "msg" : "All reservations are filled."}'}
+            format.json { 
+              render :json => '{"pass?" : "false", "resv_id" : "-1", "msg" : "All reservations are filled."}'
+            }
           end
         end
       end # the routine for creating a new reservation
@@ -60,6 +67,22 @@ class ReservationsController < ApplicationController
         redirect_to reservations_path, :notice =>"Reservation deleted"
       end 
      
+=begin 
+      NAME            : retrieve_status
+      DESCRPITION     : 
+      PRE-CONDITIONS  : 
+      POST-CONDITIONS : 
+
+      RETURNS         : void
+      
+      PARAMETERS      : 
+                        
+      TECHNICAL REQUIREMENTS: Retrieve data through HTML GET protocols
+=end
+     def retrieve_status
+       
+     end
+     
      private
 
      def reservation_params #specifies a post's attributes
@@ -72,7 +95,9 @@ class ReservationsController < ApplicationController
       DESCRPITION     : The method will check the amount of reservations in a particular block time
       PRE-CONDITIONS  : User supplied data
       POST-CONDITIONS : The method will know if a reservtation can be created with the time-block
-      
+
+      RETURNS         : boolean
+
       PARAMETERS      : id - the restaurant ID number for the reservation
                         mt - the meal_time provided by the patron  
                         
