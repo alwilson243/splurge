@@ -1,0 +1,44 @@
+<% provide(:title, 'Dine Out Orders') %>
+<h1>Dine Out Orders</h1>
+<% if signed_in? %>
+<h2>
+  Below are your dining out orders:
+</h2>
+<% if current_dine_outs.length == 0 %>
+  <h3> No Orders </h3>
+<% end %>
+<hr>
+<center>
+<table>
+ 	<tr>
+    <th style="width:5%">R_ID</th>
+ 		<th style="width:15%">Name</th>
+ 		<th style="width:10%">Phone Number</th>
+ 		<th style="width:30%">Address</th>
+ 		<th style="width:30%">Submission Time</th>
+    <th style="width:30%">Type</th>
+ 		<th style="width:10%">Modify</th>
+ 	</tr>
+  	<% current_dine_outs.each do |dine_out| %>
+ 	<p>
+ 		<tr>
+      <td><%= dine_out.restaurants_id %></td>
+  		<td><%= dine_out.name %></td> 
+  		<td><%= dine_out.phone_num %> </td>
+  		<td><%= dine_out.address %></td>
+  		<td><%= dine_out.created_at %></td>
+      <td><%= dine_out.type %></td>
+  		<td><%= link_to "Edit", edit_dine_out_path(dine_out) %> | 
+  			<%= link_to "Delete", dine_out, :confirm => "Are you sure?",
+  			:method => :delete %></td>
+  		</tr>
+      <!-- Display the meal table under each takeout row -->
+  	</p>
+  <% end %>
+</table>
+</center>
+<hr>
+<p><%= link_to "Add a New Order", new_dine_outs_path %></p>
+<% else %>
+  You are not logged in.
+<% end %>

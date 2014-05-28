@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
 
      def reservation_params #specifies a post's attributes
          params.require(:reservation).permit(:restaurants_id, :name, :party_size, 
-         	:meal_time)
+         	:timeStart)
      end
 
 end
