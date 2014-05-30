@@ -11,23 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527035209) do
+ActiveRecord::Schema.define(version: 20140529232745) do
 
   create_table "dine_outs", force: true do |t|
+    t.integer  "restaurants_id"
     t.string   "name"
-    t.string   "type"
+    t.string   "kind"
     t.string   "phone_num"
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "food_items", force: true do |t|
-    t.string   "name"
-    t.float    "price"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text     "meal"
   end
 
   create_table "meals", force: true do |t|
@@ -38,16 +32,11 @@ ActiveRecord::Schema.define(version: 20140527035209) do
     t.datetime "updated_at"
   end
 
-  create_table "menus", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "reservations", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
     t.integer  "party_size"
-    t.datetime "meal_time"
+    t.datetime "timeStart"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140527035209) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "email"
   end
 
   add_index "restaurants", ["remember_token"], name: "index_restaurants_on_remember_token"

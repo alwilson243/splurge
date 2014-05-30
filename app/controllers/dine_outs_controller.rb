@@ -43,7 +43,7 @@ class DineOutsController < ApplicationController
 	private
 
 	def dine_out_params
-		params.require(:reservation).permit(:restaurants_id, :name, 
-			:phone_num, :type, :address)
+		params.require(:dine_out).permit(:restaurants_id, :name, 
+			:phone_num, :address, :kind, :meal)
 	end
 end

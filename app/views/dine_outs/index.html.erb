@@ -13,10 +13,10 @@
  	<tr>
     <th style="width:5%">R_ID</th>
  		<th style="width:15%">Name</th>
- 		<th style="width:10%">Phone Number</th>
- 		<th style="width:30%">Address</th>
- 		<th style="width:30%">Submission Time</th>
-    <th style="width:30%">Type</th>
+ 		<th style="width:15%">Phone #</th>
+ 		<th style="width:25%">Address</th>
+ 		<th style="width:20%">Submission Time</th>
+    <th style="width:10%">Type</th>
  		<th style="width:10%">Modify</th>
  	</tr>
   	<% current_dine_outs.each do |dine_out| %>
@@ -27,18 +27,21 @@
   		<td><%= dine_out.phone_num %> </td>
   		<td><%= dine_out.address %></td>
   		<td><%= dine_out.created_at %></td>
-      <td><%= dine_out.type %></td>
+      <td><%= dine_out.kind %></td>
   		<td><%= link_to "Edit", edit_dine_out_path(dine_out) %> | 
   			<%= link_to "Delete", dine_out, :confirm => "Are you sure?",
   			:method => :delete %></td>
-  		</tr>
-      <!-- Display the meal table under each takeout row -->
+  	</tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meal: <%= dine_out.meal %>
+    </td>
+    </tr>
+    <!-- Display the meal table under each takeout row -->
   	</p>
   <% end %>
 </table>
 </center>
 <hr>
-<p><%= link_to "Add a New Order", new_dine_outs_path %></p>
+<p><%= link_to "Add a New Order", new_dine_out_path %></p>
 <% else %>
   You are not logged in.
 <% end %>
