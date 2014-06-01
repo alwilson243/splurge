@@ -1,8 +1,10 @@
 <h1>Add a New Reservation</h1>
+<% @reservation.restaurants_id = current_restaurant_id %>
 <%= form_for @reservation do |f| %>
     <p>
-    	<%= f.label "Restaurant (Find the ID in your profile)"  %> 
-    	<%= f.text_field :restaurants_id %>
+    	<%= f.label "Restaurant ID - Your ID is: "  %>
+    	<%= current_restaurant_id %> 
+    	<!-- <%= f.text_field :restaurants_id %> -->
     </p>
 	<p>
 		<%= f.label :name %>
@@ -21,3 +23,4 @@
 		<%= f.submit "Add Reservation" %>
 	</p>
 <% end %>
+<% @reservation.restaurants_id = current_restaurant_id %>

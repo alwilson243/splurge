@@ -1,10 +1,8 @@
-<h1>Add a New Dine Out Order</h1>
+<h1>Edit Order</h1>
 <%= form_for @dine_out do |f| %>
-
     <p>
-    	<%= f.label "Restaurant - Your ID is: " %>
-    	<%= current_restaurant_id %>
-    	<!-- <%= f.text_field :restaurants_id %> -->
+    	<%= f.label "Restaurant (Find ID in your profile)" %>
+    	<%= f.text_field :restaurants_id %>
     </p>
 	<p>
 		<%= f.label :name %>
@@ -27,7 +25,6 @@
 		<%= f.text_area :meal %>
 	</p>
 	<p>
-		<%= f.submit "Add Order" %>
+		<%= f.submit "Update" %>
 	</p>
-
 <% end %>

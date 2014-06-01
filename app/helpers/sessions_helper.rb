@@ -11,6 +11,10 @@ module SessionsHelper
   	!current_restaurant.nil?
   end
 
+  def authorized?
+
+  end
+
   def current_restaurant=(restaurant)
   	@current_restaurant = restaurant
   end

@@ -1,0 +1,43 @@
+<% provide(:title, 'Menu') %>
+<h1>Menu</h1>
+<% if signed_in? %>
+<h2>
+  Below is your menu:
+</h2>
+<% if current_food_items.length == 0 %>
+  <h3> No Entries </h3>
+<% end %>
+<hr>
+<center>
+<table>
+ 	<tr>
+    <th style="width:5%">R_ID</th>
+ 		<th style="width:20%">Entree</th>
+ 		<th style="width:10%">Price</th>
+    <th style="width:10%">Category</th>
+ 		<th style="width:45%">Description</th>
+ 		<!-- <th style="width:30%">Submission Time</th> -->
+ 		<th style="width:10%">Modify</th>
+ 	</tr>
+  	<% current_food_items.each do |food_item| %>
+ 	<p>
+ 		<tr>
+      <td><%= food_item.restaurants_id %></td>
+  		<td><%= food_item.name %></td> 
+  		<td><%= food_item.price %> </td>
+      <td><%= food_item.category %></td>
+  		<td><%= food_item.description %></td>
+  		<!-- <td><%= food_item.created_at %></td> -->
+  		<td><%= link_to "Edit", edit_food_item_path(food_item) %> | 
+  			<%= link_to "Delete", food_item, :confirm => "Are you sure?",
+  			:method => :delete %></td>
+  		</tr>
+  	</p>
+  <% end %>
+</table>
+</center>
+<hr>
+<p><%= link_to "Add a New Item", new_food_item_path %></p>
+<% else %>
+  <h1>You are not logged in.</h1>
+<% end %>

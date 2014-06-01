@@ -5,5 +5,5 @@ class DineOut < ActiveRecord::Base
 	validates :name, presence: true
 	validates :phone_num, presence: true
 	validates :kind, presence: true
-	#validates :meal, presence: true
+	validates :meal, presence: true
 end
