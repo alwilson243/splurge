@@ -1,0 +1,22 @@
+<h1>Edit Item</h1>
+<%= form_for @food_item do |f| %>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label :price %>
+		<%= f.text_field :price %>
+	</p>
+	<p>
+		<%= f.label :category %>
+		<%= f.text_field :category %>
+	</p>
+	<p>
+		<%= f.label "Description" %>
+		<%= f.text_field :description %>
+	</p>
+	<p>
+		<%= f.submit "Update" %>
+	</p>
+<% end %>

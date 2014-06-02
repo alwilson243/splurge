@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
 =end
       def create  # Handles creating the new post
         @reservation = Reservation.new(reservation_params)
-        
+        @reservation.restaurants_id = current_restaurant_id
         respond_to do |format|
           if res_block_check(@reservation.restaurants_id, @reservation.timeStart) # Check time block
             if @reservation.save
