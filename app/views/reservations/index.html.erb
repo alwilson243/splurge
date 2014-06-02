@@ -24,7 +24,7 @@
       <td><%= reservation.restaurants_id %></td>
   		<td><%= reservation.name %></td> 
   		<td><%= reservation.party_size %> </td>
-  		<td><%= reservation.meal_time %></td>
+  		<td><%= reservation.timeStart %></td>
   		<td><%= reservation.created_at %></td>
   		<td><%= link_to "Edit", edit_reservation_path(reservation) %> | 
   			<%= link_to "Delete", reservation, :confirm => "Are you sure?",

@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
         @reservation = Reservation.new(reservation_params)
         
         respond_to do |format|
-          if res_block_check(@reservation.restaurants_id, @reservation.meal_time) # Check time block
+          if res_block_check(@reservation.restaurants_id, @reservation.timeStart) # Check time block
             if @reservation.save
               format.html { 
                 redirect_to reservations_path, :notice => "Your reservtion was saved!" 
@@ -106,7 +106,7 @@ class ReservationsController < ApplicationController
       def res_block_check(id, mt)
           # Access database
           print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  "...\n"
-          @res = Reservation.where("restaurants_id = ? AND meal_time = ?", id, mt)
+          @res = Reservation.where("restaurants_id = ? AND timeStart = ?", id, mt)
           print "Found a total of " << @res.size.inspect << " records corresponding the ID...\n\n\n"
           # Acquire reservation block counter
           timeBlock = 4 # Restaurant.find(params[:restaurants_id]).time_per_block

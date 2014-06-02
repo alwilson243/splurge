@@ -1,0 +1,32 @@
+<h1>Add a New Dine Out Order</h1>
+<%= form_for @dine_out do |f| %>
+
+    <p>
+    	<%= f.label "Restaurant (Find ID in your profile)" %>
+    	<%= f.text_field :restaurants_id %>
+    </p>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label "Phone Number" %>
+		<%= f.text_field :phone_num %>
+	</p>
+	<p>
+		<%= f.label :address %>
+		<%= f.text_field :address %>
+	</p>
+	<p>
+		<%= f.label "Delivery/Carry Out" %>
+		<%= f.text_field :kind %>
+	</p>
+	<p>
+		<%= f.label :meal %>
+		<%= f.text_area :meal %>
+	</p>
+	<p>
+		<%= f.submit "Add Order" %>
+	</p>
+
+<% end %>

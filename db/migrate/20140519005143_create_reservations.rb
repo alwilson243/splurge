@@ -4,7 +4,7 @@ class CreateReservations < ActiveRecord::Migration
       t.references :restaurants
       t.string :name
       t.integer :party_size
-      t.datetime :timeStart
+      t.datetime :meal_time
 
       t.timestamps
     end
