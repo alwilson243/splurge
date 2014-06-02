@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
       if names != "" 
         names << ", "
       end
-      names << '{"name" : "' << r.name << '", "id : "' << r.id.inspect << '", "icon" : ""' << '' << '}'
+      names << '{"name" : "' << r.name << '", "id" : "' << r.id.inspect << '", "icon" : ""' << '' << '}'
     end
     render :json => '{"messageType" : "InformationResponse", "request" : "RestaurantList", "list" : [' << names << ']}'
   end
