@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
       if names != "" 
         names << ", "
       end
-      names << '{"name" : ' << r.name << ', "id : "' << r.id << ', "icon" : ' << '' << '}'
+      names << '{"name" : "' << r.name << '", "id" : "' << r.id.inspect << '", "icon" : ""' << '' << '}'
     end
     render :json => '{"messageType" : "InformationResponse", "request" : "RestaurantList", "list" : [' << names << ']}'
   end
@@ -66,8 +66,17 @@ class RestaurantsController < ApplicationController
 
   private
 
+    #def user_params
+     # params.require(:restaurant).permit(:name, :owner, :phone, 
+      #  :address, :password, :password_confirmation)
+    #end
+    #=========
     def user_params
       params.require(:restaurant).permit(:name, :owner, :phone, 
-        :address, :password, :password_confirmation)
+        :address, :sundayOpen, :sundayClose, :mondayOpen, 
+        :mondayClose, :tuesdayOpen, :tuesdayClose, :wednesdayOpen,
+        :wednesdayClose, :thursdayOpen, :thursdayClose, :fridayOpen,
+        :fridayClose, :saturdayOpen, :saturdayClose, :password, 
+        :password_confirmation)
     end
 end
