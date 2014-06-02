@@ -13,7 +13,7 @@ class DineOutsController < ApplicationController
 
 	def create
 		@dine_out = DineOut.new(dine_out_params)
-
+		@dine_out.restaurants_id = current_restaurant_id
 		if @dine_out.save
 			redirect_to dine_outs_path, :notice => "Your order was saved!"
 		else
