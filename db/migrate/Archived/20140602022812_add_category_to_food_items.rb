@@ -8,6 +8,6 @@ class AddCategoryToFoodItems < ActiveRecord::Migration
       # 
       # t.timestamps
   	# end
-  	add_column :food_items, :category, :string
+  	# add_column :food_items, :category, :string
   end
 end
