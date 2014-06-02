@@ -11,23 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530010634) do
+ActiveRecord::Schema.define(version: 20140602030041) do
 
   create_table "dine_outs", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
-    t.string   "type"
+    t.string   "kind"
     t.string   "phone_num"
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "meal"
   end
 
   create_table "food_items", force: true do |t|
     t.string   "name"
     t.float    "price"
     t.string   "description"
-    t.integer
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "restaurants_id"
+  end
+
+  create_table "meals", force: true do |t|
+    t.string   "entree"
+    t.float    "price"
+    t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,8 +46,7 @@ ActiveRecord::Schema.define(version: 20140530010634) do
     t.integer  "restaurants_id"
     t.string   "name"
     t.integer  "party_size"
-    t.datetime "timeStart" #you android bastards, this is killing me
-    t.integer  "waiter_id" 
+    t.datetime "timeStart"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,27 +56,13 @@ ActiveRecord::Schema.define(version: 20140530010634) do
     t.string   "owner"
     t.string   "phone"
     t.string   "address"
-    t.datetime  "sundayOpen"
-    t.datetime  "sundayClose"
-    t.datetime  "mondayOpen"
-    t.datetime  "mondayClose"
-    t.datetime  "tuesdayOpen"
-    t.datetime  "tuesdayClose"
-    t.datetime  "wednesdayOpen"
-    t.datetime  "wednesdayClose"
-    t.datetime  "thursdayOpen"
-    t.datetime  "thursdayClose"
-    t.datetime  "fridayOpen"
-    t.datetime  "fridayClose"
-    t.datetime  "saturdayOpen"
-    t.datetime  "saturdayClose"
-    t.string   "password_digest"
-    t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.string   "email"
   end
 
   add_index "restaurants", ["remember_token"], name: "index_restaurants_on_remember_token"
 
 end
-
