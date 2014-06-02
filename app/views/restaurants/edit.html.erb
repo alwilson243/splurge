@@ -1,0 +1,73 @@
+
+<h1> edit </h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@restaurant) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :owner %>
+      <%= f.text_field :owner %>
+
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+      
+      <%= f.label :sundayOpen %>
+      <%= f.text_field :sundayOpen %>
+
+      <%= f.label :sundayClose %>
+      <%= f.text_field :sundayClose %>
+
+      <%= f.label :mondayOpen %>
+      <%= f.text_field :mondayOpen %>
+
+      <%= f.label :mondayClose %>
+      <%= f.text_field :mondayClose %>
+
+      <%= f.label :tuesdayOpen %>
+      <%= f.text_field :tuesdayOpen %>
+
+      <%= f.label :tuesdayClose %>
+      <%= f.text_field :tuesdayClose %>
+
+      <%= f.label :wednesdayOpen %>
+      <%= f.text_field :wednesdayOpen %>
+
+      <%= f.label :wednesdayClose %>
+      <%= f.text_field :wednesdayClose %>
+
+      <%= f.label :thursdayOpen %>
+      <%= f.text_field :thursdayOpen %>
+
+      <%= f.label :thursdayClose %>
+      <%= f.text_field :thursdayClose %>
+
+      <%= f.label :fridayOpen %>
+      <%= f.text_field :fridayOpen %>
+
+      <%= f.label :fridayClose %>
+      <%= f.text_field :fridayClose %>
+
+      <%= f.label :saturdayOpen %>
+      <%= f.text_field :saturdayOpen %>
+
+      <%= f.label :saturdayClose %>
+      <%= f.text_field :saturdayClose %>
+      <!-- 
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+      -->
+
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

@@ -9,7 +9,9 @@ Splurge::Application.routes.draw do
   match '/signout', to: 'sessions#delete', via: 'delete'
   match '/reservations', to:'reservations#index', via: 'get'
   match '/dineouts', to:'dine_outs#index', via: 'get'
-  
+  match '/hours', to: 'restaurants#edit', via: 'get'
+
+
   post '/restaurants/list_restaurants', to:'restaurants#list_restaurants'
   post '/restaurants/info_restaurant', to:'restaurants#info_restaurant'
   

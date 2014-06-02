@@ -1,14 +1,26 @@
+<center>
 <h1>Welcome to SPLURGE</h1>
 <p>
   Brought to you by: Technical Eatery Solutions Through Emergent Software.
 </p>
+<hr>
 
+<% if signed_in? %>
+<%= link_to "View Reservations", reservations_path %>
+  <br>
+   <%= link_to "View Dine Out Orders", dine_outs_path %>
+
+<% else %>
 
 <p>
   <%# guides.rubyonrails.org/routing.html explains helper paths%>
   <%= link_to "Sign In", signin_path, class: "btn-large btn-primary" %>
+  <br>
+  <br>
   <%= link_to "Register", new_restaurant_path, class: "btn btn-large btn-primary" %>
 </p>
+
+<% end %>
 
 
 <% if false %>
@@ -16,3 +28,4 @@
   doo doo doo
   %>
 <% end %>
+</center>

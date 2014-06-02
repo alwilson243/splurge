@@ -1,8 +1,8 @@
 <h1>Add a New Reservation</h1>
 <%= form_for @reservation do |f| %>
     <p>
-    	<%= f.label "Restaurant (Find the ID in your profile)"  %> 
-    	<%= f.text_field :restaurants_id %>
+    	<%= f.label "Restaurant - Your id is: " %>
+    	<%= current_restaurant_id %>
     </p>
 	<p>
 		<%= f.label :name %>
