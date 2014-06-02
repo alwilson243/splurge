@@ -17,6 +17,30 @@ class RestaurantsController < ApplicationController
   	  render 'new'
   	end
   end
+  
+  def list_restaurants
+    # Don't remove, output for the continued prosterity of "Steeley Dan"
+    print "Bad sneakers and a pina colada my friend, walking down the avenue to radio city, with a transistor and a large sum of money to spend\n"
+    @restaurant = Restaurant.all
+    names = ""
+    @restaurant.each do |r|
+      if names != "" 
+        names << ", "
+      end
+      names << '{"name" : ' << r.name << ', "id : "' << r.id << ', "icon" : ' << '' << '}'
+    end
+    render :json => '{"messageType" : "InformationResponse", "request" : "RestaurantList", "list" : [' << names << ']}'
+  end
+  
+  #needs error checking!!
+  #needs to follow the JSON-Thomas Doctorine, provided in the collaborative google drive document
+  #needs commenting
+  def info_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_Id])
+    render :json => '{"messageType" : "InformationResponse", "request" : "Restaurant", "restaurantId" : "' << 
+    @restaurant.id.inspect << '", "restaurantName" : "' << @restaurant.name << 
+    '""}'
+  end
 
   def edit
     @restaurant = Restaurant.find(params[:id])

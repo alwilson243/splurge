@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529232745) do
+ActiveRecord::Schema.define(version: 20140530010634) do
 
   create_table "dine_outs", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
-    t.string   "kind"
+    t.string   "type"
     t.string   "phone_num"
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "meal"
   end
 
-  create_table "meals", force: true do |t|
-    t.string   "entree"
+  create_table "food_items", force: true do |t|
+    t.string   "name"
     t.float    "price"
-    t.string   "notes"
+    t.string   "description"
+    t.integer
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20140529232745) do
     t.integer  "restaurants_id"
     t.string   "name"
     t.integer  "party_size"
-    t.datetime "timeStart"
+    t.datetime "timeStart" #you android bastards, this is killing me
+    t.integer  "waiter_id" 
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,13 +47,20 @@ ActiveRecord::Schema.define(version: 20140529232745) do
     t.string   "owner"
     t.string   "phone"
     t.string   "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "sunday"
+    t.integer  "monday"
+    t.ingeger  "tuesday"
+    t.ingeger  "wednesday"
+    t.ingeger  "thursday"
+    t.ingeger  "friday"
+    t.ingeger  "saturday"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "restaurants", ["remember_token"], name: "index_restaurants_on_remember_token"
 
 end
+
