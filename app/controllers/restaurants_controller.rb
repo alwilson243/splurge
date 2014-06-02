@@ -5,6 +5,9 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    if(@restaurant.id != current_restaurant.id)
+      redirect_to @current_restaurant
+    end
   end
 
   def create
@@ -18,6 +21,16 @@ class RestaurantsController < ApplicationController
   	end
   end
   
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+    if(@restaurant.id == current_restaurant.id)
+      flash[:success] = "you are editing your restaurant"
+    else # prevents you from editing other restaurants info
+      flash[:failure] = "this is where you belong, bastard"
+      redirect_to @current_restaurant
+    end
+  end
+
   def list_restaurants
     # Don't remove, output for the continued prosterity of "Steeley Dan"
     print "Bad sneakers and a pina colada my friend, walking down the avenue to radio city, with a transistor and a large sum of money to spend\n"
