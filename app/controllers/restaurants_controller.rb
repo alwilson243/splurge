@@ -61,7 +61,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_Id])
     render :json => '{"messageType" : "InformationResponse", "request" : "Restaurant", "restaurantId" : "' << 
     @restaurant.id.inspect << '", "restaurantName" : "' << @restaurant.name << 
-    '""}'
+    '"}'
   end
 
   private
