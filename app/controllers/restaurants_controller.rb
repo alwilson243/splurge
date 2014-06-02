@@ -31,6 +31,15 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def update
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.update_attributes(user_params)
+      redirect_to restaurant_path, :notice => "Your information was saved!"
+    else
+      render "edit"
+    end
+  end
+
   def list_restaurants
     # Don't remove, output for the continued prosterity of "Steeley Dan"
     print "Bad sneakers and a pina colada my friend, walking down the avenue to radio city, with a transistor and a large sum of money to spend\n"

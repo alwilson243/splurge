@@ -27,7 +27,7 @@ class DineOutsController < ApplicationController
 
 	def update
 		@dine_out = DineOut.find(params[:id])
-		if @dine_outs.update_attributes(dine_out_params)
+		if @dine_out.update_attributes(dine_out_params)
 			redirect_to dine_outs_path, :notice => "Order updated!"
 		else
 			render "edit"
