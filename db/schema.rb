@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "restaurants_id"
+    t.integer   "restaurants_id"
   end
 
   create_table "meals", force: true do |t|
