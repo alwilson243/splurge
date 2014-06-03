@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
         @reservation = Reservation.new(reservation_params)
         @reservation.restaurants_id = current_restaurant_id
         respond_to do |format|
-          if res_block_check(@reservation.restaurants_id, @reservation.timeStart) # Check time block
+          if res_block_check(@reservation.restaurants_id, @reservation.time_start) # Check time block
             if @reservation.save
               format.html { 
                 redirect_to reservations_path, :notice => "Your reservtion was saved!" 
@@ -87,7 +87,7 @@ class ReservationsController < ApplicationController
 
      def reservation_params #specifies a post's attributes
          params.require(:reservation).permit(:restaurants_id, :name, :party_size, 
-         	:timeStart)
+         	:time_start)
      end
 
 =begin
@@ -106,7 +106,7 @@ class ReservationsController < ApplicationController
       def res_block_check(id, mt)
           # Access database
           print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  "...\n"
-          @res = Reservation.where("restaurants_id = ? AND timeStart = ?", id, mt)
+          @res = Reservation.where("restaurants_id = ? AND time_start = ?", id, mt)
           print "Found a total of " << @res.size.inspect << " records corresponding the ID...\n\n\n"
           # Acquire reservation block counter
           timeBlock = 4 # Restaurant.find(params[:restaurants_id]).time_per_block

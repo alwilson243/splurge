@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602030041) do
+ActiveRecord::Schema.define(version: 20140603033453) do
 
   create_table "dine_outs", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
-    t.string   "kind"
-    t.string   "phone_num"
+    t.float    "phone_num"
     t.string   "address"
+    t.string   "kind"
+    t.text     "meal"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "meal"
   end
 
   create_table "food_items", force: true do |t|
-    t.integer   "restaurants_id"
+    t.integer  "restaurants_id"
     t.string   "name"
     t.float    "price"
     t.string   "description"
@@ -34,26 +34,11 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.datetime "updated_at"
   end
 
-  create_table "meals", force: true do |t|
-    t.string   "entree"
-    t.float    "price"
-    t.string   "notes"
-    
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "menus", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "reservations", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
     t.integer  "party_size"
-    t.datetime "timeStart"
-
+    t.datetime "time_start"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,7 +48,6 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.string   "owner"
     t.string   "phone"
     t.string   "address"
-
     t.time     "sundayOpen"
     t.time     "sundayClose"
     t.time     "mondayOpen"
@@ -78,15 +62,11 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.time     "fridayClose"
     t.time     "saturdayOpen"
     t.time     "saturdayClose"
-
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "email"
-
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "restaurants", ["remember_token"], name: "index_restaurants_on_remember_token"
 
 end
