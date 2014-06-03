@@ -121,8 +121,6 @@ class ReservationsController < ApplicationController
             return false
           end
           
-          print "" << (mt - 900).inspect << "\n"
-          
           # Add code for open hours and auto reject if invalid hours are used
  
           # Acquire reservation block counter
