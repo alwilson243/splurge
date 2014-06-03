@@ -15,11 +15,11 @@ class ReservationsController < ApplicationController
 =end
       def create  # Handles creating the new post
         @reservation = Reservation.new(reservation_params)
-        if current_restaurant_id != nil
-         @reservation.restaurants_id = current_restaurant_id
-        end
+        # if current_restaurant_id != nil
+         # @reservation.restaurants_id = current_restaurant_id
+        # end
         respond_to do |format|
-          if res_block_check(@reservation.restaurants_id, @reservation.time_start) # Check time block
+          if res_block_check(@reservation.restaurants_id, @reservation.time_start, @reservation.party_size) # Check time block
             if @reservation.save
               format.html { 
                 redirect_to reservations_path, :notice => "Your reservtion was saved!" 
@@ -100,6 +100,8 @@ class ReservationsController < ApplicationController
 =begin
       NAME            : res_block_check
       DESCRPITION     : The method will check the amount of reservations in a particular block time
+                        as well as three block times before and after block time, the method will 
+                        also only accept quarter hour incremented time requests
       PRE-CONDITIONS  : User supplied data
       POST-CONDITIONS : The method will know if a reservtation can be created with the time-block
 
@@ -110,17 +112,39 @@ class ReservationsController < ApplicationController
                         
       TECHNICAL REQUIREMENTS: This method requires that the individuals times are in discrete time blocks
 =end
-      def res_block_check(id, mt)
+      def res_block_check(id, mt, ps)
           # Access database
-          print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  "...\n"
-          @res = Reservation.where("restaurants_id = ? AND time_start = ?", id, mt)
-          print "Found a total of " << @res.size.inspect << " records corresponding the ID...\n\n\n"
+          print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  " AND " << "PARTY_SIZE: " << ps.inspect << "\n"
+          
+          # Check for value minute intervals and zeroed seconds
+          if (mt.min % 15 != 0) || (mt.sec != 0)
+            return false
+          end
+          
+          print "" << (mt - 900).inspect << "\n"
+          
+          # Add code for open hours and auto reject if invalid hours are used
+ 
           # Acquire reservation block counter
           timeBlock = 4 # Restaurant.find(params[:restaurants_id]).time_per_block
-          #tableCapacity = 4 # will subtract from timeBlock via equation (timeBlock - (tableCapacity/timeBlock))
-          if @res.size < timeBlock
-            return true
+          tableCapacity = 4 # will subtract from timeBlock via equation (timeBlock - (tableCapacity/timeBlock))
+          requestingSize = (Float(ps)/tableCapacity).ceil
+          
+          print "Client is requesting a table of size: " << requestingSize.ceil.inspect << "\n"
+          
+          -2700.step(2700, 900){ # 60 seconds * 15 * 3 = 2700 -> from 1hr before to 1hr after resv
+              |i| puts i
+            @res = Reservation.where("restaurants_id = ? AND time_start = ? ", id, (mt + i))
+            print "Found a total of " << @res.size.inspect << " records corresponding the ID...\n\n\n"
+            
+            timeBlocksTaken = 0
+            @res.each do |res|
+              timeBlocksTaken += (Float(res.party_size)/tableCapacity).ceil
+            end          
+            if timeBlock < (timeBlocksTaken + requestingSize)
+              return false
           end
-          return false
+          }
+          return true
       end # res_block_check routine
 end
