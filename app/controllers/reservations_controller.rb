@@ -32,7 +32,7 @@ class ReservationsController < ApplicationController
                 notice: "There was an error in the reservation" 
               }
               format.json { 
-                render :json => '{"pass?" : "false", "resv_id" : "-1", "msg" : "Error in reservation"}', 
+                render :json => '{"messageType" : "ReservationResponse", "status" : "Rejected", "reservationID" : -1, "msg" : "Error"}', 
                 status: :unprocessable_entity
               }
             end
@@ -42,7 +42,7 @@ class ReservationsController < ApplicationController
               redirect_to reservations_path, :notice => "Sorry! All reservations for that time block are filled"
             }
             format.json { 
-              render :json => '{"pass?" : "false", "resv_id" : "-1", "msg" : "All reservations are filled."}'
+              render :json => '{"messageType" : "ReservationResponse", "status" : "Rejected", "reservationID" : -1, "msg" : "All reservations for that time block are filled"}'
             }
           end
         end
@@ -69,11 +69,11 @@ class ReservationsController < ApplicationController
      
 =begin 
       NAME            : retrieve_status
-      DESCRPITION     : 
-      PRE-CONDITIONS  : 
-      POST-CONDITIONS : 
+      DESCRPITION     : Sends information about reservation
+      PRE-CONDITIONS  : Requires that the user have a valid reservation ID number
+      POST-CONDITIONS : Sends reservation data to the user
 
-      RETURNS         : void
+      RETURNS         : reservation information
       
       PARAMETERS      : 
                         
