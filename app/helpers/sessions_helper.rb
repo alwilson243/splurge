@@ -21,7 +21,11 @@ module SessionsHelper
   end
 
   def current_restaurant_id
-    @current_restaurant_id = current_restaurant.id
+    begin
+      @current_restaurant_id = current_restaurant.id
+    rescue
+      @current_restaurant_id = nil
+    end
   end
 
   def sign_out
