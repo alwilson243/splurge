@@ -25,19 +25,20 @@ ActiveRecord::Schema.define(version: 20140602030041) do
   end
 
   create_table "food_items", force: true do |t|
+    t.integer   "restaurants_id"
     t.string   "name"
     t.float    "price"
     t.string   "description"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer   "restaurants_id"
   end
 
   create_table "meals", force: true do |t|
     t.string   "entree"
     t.float    "price"
     t.string   "notes"
+    
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.string   "name"
     t.integer  "party_size"
     t.datetime "timeStart"
+
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.string   "owner"
     t.string   "phone"
     t.string   "address"
+
     t.time     "sundayOpen"
     t.time     "sundayClose"
     t.time     "mondayOpen"
@@ -75,11 +78,13 @@ ActiveRecord::Schema.define(version: 20140602030041) do
     t.time     "fridayClose"
     t.time     "saturdayOpen"
     t.time     "saturdayClose"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "email"
+
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "restaurants", ["remember_token"], name: "index_restaurants_on_remember_token"
