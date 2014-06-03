@@ -25,7 +25,7 @@ class ReservationsController < ApplicationController
                 redirect_to reservations_path, :notice => "Your reservtion was saved!" 
               }
               format.json { 
-                render :json => '{"pass?" : "true", "resv_id" : "' << @reservation.id.inspect << '", "msg: "Reservation made!"}',
+                render :json => json_string_format("Accepted", @reservation.id.inspect, "Your reservation was saved!"),
                 status: :created
               }
             else
@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
                 notice: "There was an error in the reservation" 
               }
               format.json { 
-                render :json => '{"messageType" : "ReservationResponse", "status" : "Rejected", "reservationID" : -1, "msg" : "Error"}', 
+                render :json => json_string_format("Rejected", "-1", "There was an error in the reservation"), 
                 status: :unprocessable_entity
               }
             end
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
               redirect_to reservations_path, :notice => "Sorry! All reservations for that time block are filled"
             }
             format.json { 
-              render :json => '{"messageType" : "ReservationResponse", "status" : "Rejected", "reservationID" : -1, "msg" : "All reservations for that time block are filled"}'
+              render :json => json_string_format("Rejected", "-1", "Sorry! All reservations for that time block are filled")
             }
           end
         end
@@ -83,14 +83,19 @@ class ReservationsController < ApplicationController
 =end
      def retrieve_status
        
-     end
+     end # of retrieve_status
      
      private
 
+     def json_string_format(status, id, msg)
+        return '{"messageType" : "ReservationResponse", "status" : "' << status <<
+         '", "reservationID" : "' << id << '", "msg" : "' << msg << '"}'
+     end # of json_string_format
+     
      def reservation_params #specifies a post's attributes
          params.require(:reservation).permit(:restaurants_id, :name, :party_size, 
          	:time_start)
-     end
+     end # of reservation_params
 
 =begin
       NAME            : res_block_check
