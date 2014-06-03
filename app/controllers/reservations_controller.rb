@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
 =end
       def create  # Handles creating the new post
         @reservation = Reservation.new(reservation_params)
+        
         if current_restaurant_id != nil
          @reservation.restaurants_id = current_restaurant_id
         end
