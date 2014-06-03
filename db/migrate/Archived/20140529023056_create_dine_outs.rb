@@ -3,7 +3,7 @@ class CreateDineOuts < ActiveRecord::Migration
     create_table :dine_outs do |t|
       t.references :restaurants
       t.string :name
-      t.string :type
+      t.string :kind
       t.string :phone_num
       t.string :address
       t.text :meal, array: true, null: false, default: '{}'

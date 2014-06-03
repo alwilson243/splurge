@@ -16,13 +16,13 @@ class DineOutsController < ApplicationController
 		
 		@dine_out.restaurants_id = current_restaurant_id
 		
-		respond_to do |format|
+		# respond_to do |format|
   		if @dine_out.save
   			redirect_to dine_outs_path, :notice => "Your order was saved!"
   		else
   			render "new"
   		end
-		end
+		# end
 	end
 
 	def edit
@@ -48,6 +48,6 @@ class DineOutsController < ApplicationController
 
 	def dine_out_params
 		params.require(:dine_out).permit(:restaurants_id, :name, 
-			:phone_num, :address, :type, :meal)
+			:phone_num, :address, :kind, :meal)
 	end
 end

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140603031805) do
   create_table "dine_outs", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
-    t.string   "type"
+    t.string   "kind"
     t.string   "phone_num"
     t.string   "address"
     t.text     "meal",           default: "{}", null: false
