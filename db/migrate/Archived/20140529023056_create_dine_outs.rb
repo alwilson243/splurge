@@ -6,7 +6,7 @@ class CreateDineOuts < ActiveRecord::Migration
       t.string :kind
       t.string :phone_num
       t.string :address
-      t.text :meal, array: true, null: false, default: '{}'
+      t.text :meal, array: true, null: false, default: ''
 
       t.timestamps
     end
