@@ -1,8 +1,11 @@
 <% provide(:title, 'Dine Out Orders') %>
 <h1>Dine Out Orders</h1>
 <% if signed_in? %>
-<script>
-	ESPN_refresh=window.setTimeout(function(){window.location.href=window.location.href},900000);
+<script type="text/javascript">
+  var timeout = setTimeout("location.reload(true);",10000);
+  function resetTimeout() {
+    clearTimeout(timeout);
+  }
 </script>
 <h2>
   Below are your dining out orders:
@@ -48,7 +51,7 @@
 </table>
 </center>
 <hr>
-<p><%= link_to "Add a New Order", new_dine_out_path %></p>
+<p><%= link_to "Add a New Order", new_dine_out_path, :onclick => "resetTimeout();" %></p>
 <% else %>
   You are not logged in.
 <% end %>
