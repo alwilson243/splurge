@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
                 notice: "There was an error in the reservation" 
               }
               format.json { 
-                render :json => json_string_format("Rejected", "-1", "There was an error in the reservation"), 
+                render :json => json_string_format("Denied", "-1", "There was an error in the reservation"), 
                 status: :unprocessable_entity
               }
             end
@@ -46,7 +46,7 @@ class ReservationsController < ApplicationController
               redirect_to reservations_path, :notice => "Sorry! All reservations for that time block are filled"
             }
             format.json { 
-              render :json => json_string_format("Rejected", "-1", "Sorry! All reservations for that time block are filled")
+              render :json => json_string_format("Denied", "-1", "Sorry! All reservations for that time block are filled")
             }
           end
         end
@@ -88,7 +88,7 @@ class ReservationsController < ApplicationController
      end # of retrieve_status
      
      private
-
+     status = ""
      def json_string_format(status, id, msg)
         return '{"messageType" : "ReservationResponse", "status" : "' << status <<
          '", "reservationID" : "' << id << '", "msg" : "' << msg << '"}'

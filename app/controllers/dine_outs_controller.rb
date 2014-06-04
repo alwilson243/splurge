@@ -21,11 +21,11 @@ class DineOutsController < ApplicationController
 		respond_to do |format|
   		if @dine_out.save
   		  format.html{redirect_to dine_outs_path, :notice => "Your order was saved!"}
-  		  format.json{render :json => '{"poop" : "poop"}'}
+  		  format.json{render :json => json_string_format("Accepted", @dine_out.id.inspect, "Your order was saved!!!!")}
   		else
   			format.html{render "new", :notice => "There was a mistake in your order!"}
   			format.json{
-  			  render :json => '{"poop" : "poop!!"}',
+  			  render :json => json_string_format("Denied", "-1", "Your order could not be any more invalid."),
   			  status: :unprocessable_entity
   			}
   		end # saving condition
@@ -52,7 +52,11 @@ class DineOutsController < ApplicationController
 	end
 
 	private
-
+   def json_string_format(status, id, msg)
+      return '{"messageType" : "dineout", "status" : "' << status <<
+       '", "reservationID" : "' << id << '", "msg" : "' << msg << '"}'
+   end # of json_string_format
+   
 	def dine_out_params
 		params.require(:dine_out).permit(:restaurants_id, :name, 
 			:phone_num, :address, :kind, :meal)
