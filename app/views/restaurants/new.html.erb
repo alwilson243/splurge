@@ -1,5 +1,4 @@
 <h1>Register</h1>
-<p>Find me in app/views/restaurants/new.html.erb</p>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@restaurant) do |f| %>
@@ -16,47 +15,55 @@
       <%= f.label :address %>
       <%= f.text_field :address %>
 
-      <%= f.label :sundayOpen %>
-      <%= f.text_field :sundayOpen %>
+      <%= f.label "Reservation limit" %>
+      <%= f.text_field :reserveCap %>
 
-      <%= f.label :sundayClose %>
-      <%= f.text_field :sundayClose %>
+      <p>Schedule</p>
 
-      <%= f.label :mondayOpen %>
-      <%= f.text_field :mondayOpen %>
+      <table>
+            <tr>
+                  <td>Day</td>
+                  <td>Open</td>
+                  <td>Close</td>
+            </tr>
+            <tr>
+                  <td>Sunday</td>
+                  <td><%= f.text_field :sundayOpen %></td>
+                  <td><%= f.text_field :sundayClose %></td>
+            </tr>
+            <tr>
+                  <td>Monday</td>
+                  <td><%= f.text_field :mondayOpen %></td>
+                  <td><%= f.text_field :mondayClose %></td>
+            </tr>
+            <tr>
+                  <td>Tuesday</td>
+                  <td><%= f.text_field :tuesdayOpen %></td>
+                  <td><%= f.text_field :tuesdayClose %></td>
+            </tr>
+            <tr>
+                  <td>Wednesday</td>
+                  <td><%= f.text_field :wednesdayOpen %></td>
+                  <td><%= f.text_field :wednesdayClose %></td>
+            </tr>
+            <tr>
+                  <td>Thursday</td>
+                  <td><%= f.text_field :thursdayOpen %></td>
+                  <td><%= f.text_field :thursdayClose %></td>
+            </tr>
+            <tr>
+                  <td>Friday</td>
+                  <td><%= f.text_field :fridayOpen %></td>
+                  <td><%= f.text_field :fridayClose %></td>
+            </tr>
+            <tr>
+                  <td>Saturday</td>
+                  <td><%= f.text_field :saturdayOpen %></td>
+                  <td><%= f.text_field :saturdayClose %></td>
+            </tr>
 
-      <%= f.label :mondayClose %>
-      <%= f.text_field :mondayClose %>
 
-      <%= f.label :tuesdayOpen %>
-      <%= f.text_field :tuesdayOpen %>
-
-      <%= f.label :tuesdayClose %>
-      <%= f.text_field :tuesdayClose %>
-
-      <%= f.label :wednesdayOpen %>
-      <%= f.text_field :wednesdayOpen %>
-
-      <%= f.label :wednesdayClose %>
-      <%= f.text_field :wednesdayClose %>
-
-      <%= f.label :thursdayOpen %>
-      <%= f.text_field :thursdayOpen %>
-
-      <%= f.label :thursdayClose %>
-      <%= f.text_field :thursdayClose %>
-
-      <%= f.label :fridayOpen %>
-      <%= f.text_field :fridayOpen %>
-
-      <%= f.label :fridayClose %>
-      <%= f.text_field :fridayClose %>
-
-      <%= f.label :saturdayOpen %>
-      <%= f.text_field :saturdayOpen %>
-
-      <%= f.label :saturdayClose %>
-      <%= f.text_field :saturdayClose %>
+      </table>
 
       <%= f.label :password %>
       <%= f.password_field :password %>

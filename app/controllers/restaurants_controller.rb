@@ -99,7 +99,7 @@ class RestaurantsController < ApplicationController
     #=========
     def user_params
       params.require(:restaurant).permit(:name, :owner, :phone, 
-        :address, :sundayOpen, :sundayClose, :mondayOpen, 
+        :address, :reserveCap, :sundayOpen, :sundayClose, :mondayOpen, 
         :mondayClose, :tuesdayOpen, :tuesdayClose, :wednesdayOpen,
         :wednesdayClose, :thursdayOpen, :thursdayClose, :fridayOpen,
         :fridayClose, :saturdayOpen, :saturdayClose, :password, 
