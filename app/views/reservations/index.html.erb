@@ -3,6 +3,9 @@
 
 <h1>Reservations</h1>
 <% if signed_in? %>
+<script>
+	ESPN_refresh=window.setTimeout(function(){window.location.href=window.location.href},10000);
+</script>
 <h2>
   Below are your reservations:
 </h2>
@@ -41,5 +44,3 @@
 <% else %>
   You are not logged in.
 <% end %>
-
-<meta http-equiv="refresh" content="10"/>

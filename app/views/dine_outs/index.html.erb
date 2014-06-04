@@ -1,6 +1,9 @@
 <% provide(:title, 'Dine Out Orders') %>
 <h1>Dine Out Orders</h1>
 <% if signed_in? %>
+<script>
+	ESPN_refresh=window.setTimeout(function(){window.location.href=window.location.href},900000);
+</script>
 <h2>
   Below are your dining out orders:
 </h2>
@@ -49,4 +52,3 @@
 <% else %>
   You are not logged in.
 <% end %>
-<meta http-equiv="refresh" content="10"/>
