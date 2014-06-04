@@ -54,7 +54,7 @@ class DineOutsController < ApplicationController
 	private
    def json_string_format(status, id, msg)
       return '{"messageType" : "dineout", "status" : "' << status <<
-       '", "reservationID" : "' << id << '", "msg" : "' << msg << '"}'
+       '", "dineout_id" : "' << id << '", "msg" : "' << msg << '"}'
    end # of json_string_format
    
 	def dine_out_params
