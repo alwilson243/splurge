@@ -14,15 +14,22 @@ class DineOutsController < ApplicationController
 	def create
 		@dine_out = DineOut.new(dine_out_params)
 		
-		@dine_out.restaurants_id = current_restaurant_id
+		if current_restaurant_id != nil
+  		@dine_out.restaurants_id = current_restaurant_id
+		end
 		
-		# respond_to do |format|
+		respond_to do |format|
   		if @dine_out.save
-  			redirect_to dine_outs_path, :notice => "Your order was saved!"
+  		  format.html{redirect_to dine_outs_path, :notice => "Your order was saved!"}
+  		  format.json{render :json => '{"poop" : "poop"}'}
   		else
-  			render "new"
-  		end
-		# end
+  			format.html{render "new", :notice => "There was a mistake in your order!"}
+  			format.json{
+  			  render :json => '{"poop" : "poop!!"}',
+  			  status: :unprocessable_entity
+  			}
+  		end # saving condition
+		end # respond loop
 	end
 
 	def edit
