@@ -63,7 +63,7 @@ class RestaurantsController < ApplicationController
     '{
       "messageType" : "InformationResponse", 
       "request" : "Restaurant", 
-      "restaurantID" : "' << @restaurant.id.inspect << '",
+      "restaurantId" : "' << @restaurant.id.inspect << '",
       "restaurantName" : "' << @restaurant.name << '",
       "restaurantLocation" : "' << @restaurant.address << '",
       "restaurantMenu" : [' << menu_string_generator(@restaurant.id) << '
