@@ -25,6 +25,11 @@
 		<%= f.text_area :meal %>
 	</p>
 	<p>
+		<%= f.label "Target Time" %>
+		Format: YYYY-MM-DD hh:mm:ss
+		<%= f.text_field :time_gimme %>
+	</p>
+	<p>
 		<%= f.submit "Add Order" %>
 	</p>
 

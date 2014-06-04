@@ -59,6 +59,6 @@ class DineOutsController < ApplicationController
    
 	def dine_out_params
 		params.require(:dine_out).permit(:restaurants_id, :name, 
-			:phone_num, :address, :kind, :meal)
+			:phone_num, :address, :kind, :meal, :time_gimme)
 	end
 end

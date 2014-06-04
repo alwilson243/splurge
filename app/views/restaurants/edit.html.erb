@@ -16,7 +16,55 @@
 
       <%= f.label :address %>
       <%= f.text_field :address %>
+
+      <p>Schedule</p>
+
+      <table>
+            <tr>
+                  <td>Day</td>
+                  <td>Open</td>
+                  <td>Close</td>
+            </tr>
+            <tr>
+                  <td>Sunday</td>
+                  <td><%= f.text_field :sundayOpen %></td>
+                  <td><%= f.text_field :sundayClose %></td>
+            </tr>
+            <tr>
+                  <td>Monday</td>
+                  <td><%= f.text_field :mondayOpen %></td>
+                  <td><%= f.text_field :mondayClose %></td>
+            </tr>
+            <tr>
+                  <td>Tuesday</td>
+                  <td><%= f.text_field :tuesdayOpen %></td>
+                  <td><%= f.text_field :tuesdayClose %></td>
+            </tr>
+            <tr>
+                  <td>Wednesday</td>
+                  <td><%= f.text_field :wednesdayOpen %></td>
+                  <td><%= f.text_field :wednesdayClose %></td>
+            </tr>
+            <tr>
+                  <td>Thursday</td>
+                  <td><%= f.text_field :thursdayOpen %></td>
+                  <td><%= f.text_field :thursdayClose %></td>
+            </tr>
+            <tr>
+                  <td>Friday</td>
+                  <td><%= f.text_field :fridayOpen %></td>
+                  <td><%= f.text_field :fridayClose %></td>
+            </tr>
+            <tr>
+                  <td>Saturday</td>
+                  <td><%= f.text_field :saturdayOpen %></td>
+                  <td><%= f.text_field :saturdayClose %></td>
+            </tr>
+
+
+      </table>
       
+      <!--
       <%= f.label :sundayOpen %>
       <%= f.text_field :sundayOpen %>
 
@@ -58,7 +106,7 @@
 
       <%= f.label :saturdayClose %>
       <%= f.text_field :saturdayClose %>
-      <!-- 
+      
       <%= f.label :password %>
       <%= f.password_field :password %>
 
