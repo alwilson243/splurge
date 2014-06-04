@@ -59,13 +59,32 @@ class RestaurantsController < ApplicationController
   #needs commenting
   def info_restaurant
     @restaurant = Restaurant.find(params[:restaurant_Id])
-    render :json => '{"messageType" : "InformationResponse", "request" : "Restaurant", "restaurantId" : "' << 
-    @restaurant.id.inspect << '", "restaurantName" : "' << @restaurant.name << 
-    '"}'
+    render :json => 
+    '{
+      "messageType" : "InformationResponse", 
+      "request" : "Restaurant", 
+      "restaurantID" : "' << @restaurant.id.inspect << '",
+      "restaurantName" : "' << @restaurant.name << '",
+      "restaurantLocation" : "' << @restaurant.address << '",
+      "restaurantMenu" : [' << menu_string_generator(@restaurant.id) << ']}'
   end
 
   private
-
+    def menu_string_generator(id)
+      str = ""
+      ["Breakfast", "Lunch", "Dinner", "Dessert", "Beverage"].each do |category|
+        str += '
+        "{title" : "' << category << '",
+        "items" : [{'
+        @food_items = FoodItem.where("restaurants_id = ? AND category = ?", id, category)
+        @food_items.each do |food_item|
+          str += '"itemName" : "' << food_item.name << '",
+          "price" : "' << food_item.price.inspect << '"}'
+        end
+        str += ']}'
+      end
+      return str
+    end
     #def user_params
      # params.require(:restaurant).permit(:name, :owner, :phone, 
       #  :address, :password, :password_confirmation)
