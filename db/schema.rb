@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20140604003809) do
   create_table "dine_outs", force: true do |t|
     t.integer  "restaurants_id"
     t.string   "name"
+    t.string   "kind"
     t.string   "phone_num"
     t.string   "address"
-    t.string   "kind"
-    t.text     "meal"
+    t.text     "meal",           default: "{}", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "time_gimme"

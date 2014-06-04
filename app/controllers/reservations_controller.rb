@@ -126,7 +126,9 @@ class ReservationsController < ApplicationController
           # Add code for open hours and auto reject if invalid hours are used
  
           # Acquire reservation block counter
-          timeBlock = @current_restaurant.reserveCap # Restaurant.find(params[:restaurants_id]).reserveCap
+          restaurant = Restaurant.find(id)
+          timeBlock = (restaurant.reserveCap == nil)? 4 : restaurant.reserveCap # Restaurant.find(params[:restaurants_id]).reserveCap
+          print "Restaurant reservation cap per block is : " << timeBlock.inspect << "\n"
           tableCapacity = 4 # will subtract from timeBlock via equation (timeBlock - (tableCapacity/timeBlock))
           requestingSize = (Float(ps)/tableCapacity).ceil
           

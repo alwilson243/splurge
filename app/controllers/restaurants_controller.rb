@@ -66,8 +66,30 @@ class RestaurantsController < ApplicationController
       "restaurantId" : "' << @restaurant.id.inspect << '",
       "restaurantName" : "' << @restaurant.name << '",
       "restaurantLocation" : "' << @restaurant.address << '",
-      "restaurantMenu" : [' << menu_string_generator(@restaurant.id) << '
-        ]}'
+      "restaurantMenu" : [' << menu_string_generator(@restaurant.id) << '],
+      "restaurantHours" : [
+        {"dayNum" : "0",
+        "startTime" : "' << @restaurant.sundayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.sundayClose.to_s(:time) << '"},
+        {"dayNum" : "1",
+        "startTime" : "' << @restaurant.mondayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.mondayClose.to_s(:time) << '"},
+        {"dayNum" : "2",
+        "startTime" : "' << @restaurant.tuesdayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.tuesdayClose.to_s(:time) << '"},
+        {"dayNum" : "3",
+        "startTime" : "' << @restaurant.wednesdayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.wednesdayClose.to_s(:time) << '"},
+        {"dayNum" : "4",
+        "startTime" : "' << @restaurant.thursdayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.thursdayClose.to_s(:time) << '"},
+        {"dayNum" : "5",
+        "startTime" : "' << @restaurant.fridayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.fridayClose.to_s(:time) << '"},
+        {"dayNum" : "6",
+        "startTime" : "' << @restaurant.saturdayOpen.to_s(:time) << '",
+        "endTime" : "' << @restaurant.saturdayClose.to_s(:time) << '"}
+      ]}'
   end
 
   private
