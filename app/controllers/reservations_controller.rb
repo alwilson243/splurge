@@ -46,7 +46,7 @@ class ReservationsController < ApplicationController
               redirect_to reservations_path, :notice => "Sorry! All reservations for that time block are filled"
             }
             format.json { 
-              render :json => json_string_format("Denied", "-1", "Sorry! All reservations for that time block are filled")
+              render :json => json_string_format("Denied", "-1", @errmsg)
             }
           end
         end
@@ -119,8 +119,13 @@ class ReservationsController < ApplicationController
           print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  " AND " << "PARTY_SIZE: " << ps.inspect << "\n"
           
           # Check for value minute intervals and zeroed seconds
-          if (mt.min % 15 != 0) || (mt.sec != 0)
+          if (mt.min % 15 != 0)
+            @errmsg = "Minutes are invalid for reservation input"
             return false
+          else if mt.sec != 0
+            @errmsg = "Seconds are invalid for reservation input"
+            return false
+            end
           end
           
           # Add code for open hours and auto reject if invalid hours are used
@@ -146,6 +151,7 @@ class ReservationsController < ApplicationController
               timeBlocksTaken += (Float(res.party_size)/tableCapacity).ceil
             end
             if (timeBlock) < (timeBlocksTaken + requestingSize)
+              @errmsg = "Sorry! All reservations for that time block are filled"
               return false
             end
           }
