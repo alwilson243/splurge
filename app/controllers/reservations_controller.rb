@@ -135,6 +135,8 @@ class ReservationsController < ApplicationController
           print "Client is requesting a table of size: " << requestingSize.ceil.inspect << "\n"
           
            timeBlocksTaken = 0 # check how many blocks have already been consumed
+           
+           
           -2700.step(2700, 900){ # 60 seconds * 15 * 3 = 2700 -> from 1hr before to 1hr after resv
               |i| puts i
             @res = Reservation.where("restaurants_id = ? AND time_start = ? ", id, (mt + i))
