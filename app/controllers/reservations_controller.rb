@@ -122,10 +122,14 @@ class ReservationsController < ApplicationController
           if (mt.min % 15 != 0)
             @errmsg = "Minutes are invalid for reservation input"
             return false
-          else if mt.sec != 0
+          end
+          if mt.sec != 0
             @errmsg = "Seconds are invalid for reservation input"
             return false
-            end
+          end
+          if ps <= 0
+            @errmsg = "A party consists of one or more people."
+            return false
           end
           
           # Add code for open hours and auto reject if invalid hours are used
