@@ -110,8 +110,9 @@ class ReservationsController < ApplicationController
       RETURNS         : boolean
 
       PARAMETERS      : id - the restaurant ID number for the reservation
-                        mt - the meal_time provided by the patron  
-                        
+                        mt - the meal_time provided by the patron, must be in quarter hour intervals, 
+                             seconds must be zeroed 
+                        ps - the party_size provided by the patron
       TECHNICAL REQUIREMENTS: This method requires that the individuals times are in discrete time blocks
 =end
       def res_block_check(id, mt, ps)
