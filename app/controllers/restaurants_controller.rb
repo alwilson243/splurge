@@ -108,7 +108,7 @@ class RestaurantsController < ApplicationController
         @food_items.each do |food_item|
           str += '
             {"itemName" : "' << food_item.name << '",
-            "price" : "' << food_item.price.inspect << '
+            "price" : "' << food_item.price.inspect << '",
             "itemDescription" : "' << food_item.description << '"}'
         end
         str += ']}'
