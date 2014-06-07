@@ -121,13 +121,13 @@ class ReservationsController < ApplicationController
           # Access database
           print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  " AND " << "PARTY_SIZE: " << ps.inspect << "\n"
 
-          if (mt == nil || mt.min == nil) # this block checks to see if any of the parameters are nil
-            @errmsg = "Please check that your reservation time is in the appropriate format"
+          if (mt == nil || ps == nil) # this block checks to see if any of the parameters are nil
+            @errmsg = "You must fill in all required fields"
             return false
           end
 
           # Check for value minute intervals and zeroed seconds
-          if (mt.min % 15 != 0) # minutes invalidation check
+          if (mt.min == nil || mt.min % 15 != 0) # minutes invalidation check
             @errmsg = "Minutes are invalid for reservation input"
             return false
           end
@@ -135,6 +135,7 @@ class ReservationsController < ApplicationController
             @errmsg = "Seconds are invalid for reservation input"
             return false
           end
+          
           if (ps == nil || ps <= 0) # Check for real party sizes
             @errmsg = "A party consists of one or more people."
             return false
