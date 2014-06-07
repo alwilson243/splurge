@@ -66,6 +66,7 @@ class RestaurantsController < ApplicationController
       "restaurantId" : "' << @restaurant.id.inspect << '",
       "restaurantName" : "' << @restaurant.name << '",
       "restaurantLocation" : "' << @restaurant.address << '",
+      "restaurantPhone" : "' << @restaurant.phone << '",
       "restaurantMenu" : [' << menu_string_generator(@restaurant.id) << '],
       "restaurantHours" : [
         {"dayNum" : "0",
