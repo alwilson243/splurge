@@ -19,7 +19,7 @@
 	</p>
 	<p>
 		<%= f.label "Delivery/Carry Out" %>
-		<%= f.text_field :kind %>
+		<%= f.select :kind, options_for_select([['Delivery', 'd'], ['Carry Out', 'co']], @dine_out.kind) %>
 	</p>
 	<p>
 		<%= f.label :meal %>
