@@ -105,12 +105,17 @@ class RestaurantsController < ApplicationController
             "title" : "' << category << '",
             "items" : ['
         @food_items = FoodItem.where("restaurants_id = ? AND category = ?", id, category)
+				nstr = ""
         @food_items.each do |food_item|
-          str += '
+					if nstr != ""
+						nstr += ', '
+					end
+          nstr += '
             {"itemName" : "' << food_item.name << '",
             "price" : "' << food_item.price.inspect << '",
             "itemDescription" : "' << food_item.description << '"}'
         end
+				str += nstr
         str += ']}'
       end
       return str
