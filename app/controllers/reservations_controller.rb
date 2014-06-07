@@ -69,7 +69,7 @@ class ReservationsController < ApplicationController
           if @reservation.update_attributes(reservation_params)
             redirect_to reservations_path, :notice =>"Reservation updated"
           else
-            render "edit"
+            render "edit", :notice => "There was an error trying to save the reservation"
           end
         else
           @reservation.time_start = oldTime
