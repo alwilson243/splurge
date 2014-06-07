@@ -34,7 +34,7 @@
   		<td><%= reservation.party_size %> </td>
   		<td><%= reservation.time_start %></td>
   		<td><%= reservation.created_at %></td>
-  		<td><%= link_to "Edit", edit_reservation_path(reservation) %> | 
+  		<td><%= link_to "Edit", edit_reservation_path(reservation), :onclick => "resetTimeout();" %> | 
   			<%= link_to "Delete", reservation, :confirm => "Are you sure?",
   			:method => :delete %></td>
   		</tr>

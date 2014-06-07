@@ -19,14 +19,12 @@ class ReservationsController < ApplicationController
         if current_restaurant_id != nil
          @reservation.restaurants_id = current_restaurant_id
         end
-
-
         
         respond_to do |format|
           if res_block_check(@reservation.restaurants_id, @reservation.time_start, @reservation.party_size) # Check time block
             if @reservation.save
               format.html { 
-                redirect_to reservations_path, :notice => "Your reservtion was saved!" 
+                redirect_to reservations_path, :notice => "Your reservation was saved!" 
               }
               format.json { 
                 render :json => json_string_format("Accepted", @reservation.id.inspect, "Your reservation was saved!"),
@@ -60,12 +58,26 @@ class ReservationsController < ApplicationController
 
       def update  # update submits changes to the database
         @reservation = Reservation.find(params[:id])
+        oldTime = @reservation.time_start
+        
+        # displace original reservation out of block
+        @reservation.update_attributes(:time_start => "2000-01-01 12:00:15") 
+      
+        editRes = Reservation.new(reservation_params)
+        
+        if res_block_check(current_restaurant_id, editRes.time_start, editRes.party_size)
           if @reservation.update_attributes(reservation_params)
             redirect_to reservations_path, :notice =>"Reservation updated"
           else
             render "edit"
           end
-      end
+        else
+          @reservation.time_start = oldTime
+          @reservation.save # revert the change to time and return the error
+          redirect_to reservations_path, :notice => @errmsg
+        end
+        
+    end
 
       def destroy # deletes the post
         @reservation = Reservation.find(params[:id])
