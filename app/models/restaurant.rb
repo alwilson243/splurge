@@ -24,6 +24,7 @@ class Restaurant < ActiveRecord::Base
   validates :fridayClose, presence: true
   validates :saturdayOpen, presence: true
   validates :saturdayClose, presence: true
+  validates :reserveCap, presence: true
 
   has_secure_password
 

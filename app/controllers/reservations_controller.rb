@@ -19,6 +19,8 @@ class ReservationsController < ApplicationController
         if current_restaurant_id != nil
          @reservation.restaurants_id = current_restaurant_id
         end
+
+
         
         respond_to do |format|
           if res_block_check(@reservation.restaurants_id, @reservation.time_start, @reservation.party_size) # Check time block
@@ -43,7 +45,7 @@ class ReservationsController < ApplicationController
           else
             #Notify that there are no blocks left
             format.html {
-              redirect_to reservations_path, :notice => "Sorry! All reservations for that time block are filled"
+              redirect_to reservations_path, :notice => @errmsg
             }
             format.json { 
               render :json => json_string_format("Denied", "-1", @errmsg)
@@ -118,9 +120,14 @@ class ReservationsController < ApplicationController
       def res_block_check(id, mt, ps)
           # Access database
           print "ENTERING ROUTINE WITH RESTAURANT ID: " << id.inspect <<  " AND " << "PARTY_SIZE: " << ps.inspect << "\n"
-          
+
+          if (mt == nil || ps == nil)
+            @errmsg = "Not all fields were filled"
+            return false
+          end
+
           # Check for value minute intervals and zeroed seconds
-          if (mt.min % 15 != 0)
+          if (mt == nil || mt.min % 15 != 0)
             @errmsg = "Minutes are invalid for reservation input"
             return false
           end
@@ -128,7 +135,7 @@ class ReservationsController < ApplicationController
             @errmsg = "Seconds are invalid for reservation input"
             return false
           end
-          if ps <= 0
+          if (ps == nil || ps <= 0)
             @errmsg = "A party consists of one or more people."
             return false
           end
