@@ -127,7 +127,7 @@ class ReservationsController < ApplicationController
           end
 
           # Check for value minute intervals and zeroed seconds
-          if (mt == nil || mt.min % 15 != 0)
+          if (mt.min % 15 != 0)
             @errmsg = "Minutes are invalid for reservation input"
             return false
           end
@@ -135,7 +135,7 @@ class ReservationsController < ApplicationController
             @errmsg = "Seconds are invalid for reservation input"
             return false
           end
-          if (ps == nil || ps <= 0)
+          if (ps <= 0)
             @errmsg = "A party consists of one or more people."
             return false
           end
