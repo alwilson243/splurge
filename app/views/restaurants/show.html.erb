@@ -1,12 +1,15 @@
 <% provide(:title, @restaurant.id) %>
+
 <center>
 <h1>
 	<%= @restaurant.name.upcase %>
 </h1>
 <h2>
-  Your Restaurant ID (R_ID) is:
+  <!--
+  Your Restaurant ID is:
   <%= @restaurant.id %>
   <br>
+  -->
   Your address is:
   <%= @restaurant.address %>
   <br>

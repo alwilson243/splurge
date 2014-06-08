@@ -1,9 +1,11 @@
 <h1>Add a New Item</h1>
 <%= form_for @food_item do |f| %>
+	<!--
     <p>
     	<%= f.label "Restaurant - Your ID is: " %>
     	<%= current_restaurant_id %>
     </p>
+	-->
 	<p>
 		<%= f.label :name %>
 		<%= f.text_field :name %>

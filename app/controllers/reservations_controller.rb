@@ -1,6 +1,11 @@
 class ReservationsController < ApplicationController
       def index   # home page of the blog
-        @reservations = Reservation.all
+        if !signed_in?
+          redirect_to login_page
+          flash[:failure] = "Please log in"
+        else
+          @reservations = Reservation.all
+        end
       end
       
       def show    # shows an individual post (never called)
@@ -8,7 +13,12 @@ class ReservationsController < ApplicationController
       end
 
       def new     #  displays form to create a post
-        @reservation = Reservation.new
+        if !signed_in?
+          redirect_to login_page
+          flash[:failure] = "Please log in"
+        else
+          @reservation = Reservation.new
+        end
       end
 
 =begin
@@ -53,7 +63,12 @@ class ReservationsController < ApplicationController
       end # the routine for creating a new reservation
             
       def edit    # form for editing the post
-        @reservation = Reservation.find(params[:id])
+        if !signed_in?
+          redirect_to login_page
+          flash[:failure] = "Please log in"
+        else
+          @reservation = Reservation.find(params[:id])
+        end
       end
 
       def update  # update submits changes to the database

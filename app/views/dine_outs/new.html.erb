@@ -1,9 +1,11 @@
 <h1>Add a New Dine Out Order</h1>
 <%= form_for @dine_out do |f| %>
-
+	<!--
     <p>
     	<%= f.label "Restaurant - Your ID is: " %>
     	<%= current_restaurant_id %>
+	</p>
+	-->
 	<p>
 		<%= f.label :name %>
 		<%= f.text_field :name %>

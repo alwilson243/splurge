@@ -1,6 +1,11 @@
 class FoodItemsController < ApplicationController
 	def index
-		@food_items = FoodItem.all
+		if !signed_in?
+      		redirect_to login_page
+      		flash[:failure] = "Please log in"
+    	else
+			@food_items = FoodItem.all
+		end
 	end
 
 	def show
@@ -8,7 +13,12 @@ class FoodItemsController < ApplicationController
 	end
 
 	def new
-		@food_item = FoodItem.new
+		if !signed_in?
+      		redirect_to login_page
+      		flash[:failure] = "Please log in"
+    	else
+			@food_item = FoodItem.new
+		end
 	end
 
 	def create
@@ -22,7 +32,12 @@ class FoodItemsController < ApplicationController
 	end
 
 	def edit
-		@food_item = FoodItem.find(params[:id])
+		if !signed_in?
+      		redirect_to login_page
+      		flash[:failure] = "Please log in"
+    	else
+			@food_item = FoodItem.find(params[:id])
+		end
 	end
 
 	def update

@@ -11,6 +11,10 @@ module SessionsHelper
   	!current_restaurant.nil?
   end
 
+  def login_page
+    @login_page = new_session_path
+  end
+
   def current_restaurant=(restaurant)
   	@current_restaurant = restaurant
   end

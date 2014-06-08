@@ -4,9 +4,14 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
-    if(@restaurant.id != current_restaurant.id)
-      redirect_to @current_restaurant
+    if !signed_in?
+      redirect_to login_page
+      flash[:failure] = "Please log in"
+    else
+      @restaurant = Restaurant.find(params[:id])
+      if(@restaurant.id != current_restaurant.id)
+        redirect_to @current_restaurant
+      end
     end
   end
 
@@ -22,12 +27,17 @@ class RestaurantsController < ApplicationController
   end
   
   def edit
-    @restaurant = Restaurant.find(params[:id])
-    if(@restaurant.id == current_restaurant.id)
-      flash[:success] = "you are editing your restaurant"
-    else # prevents you from editing other restaurants info
-      flash[:failure] = "this is where you belong, bastard"
-      redirect_to @current_restaurant
+    if !signed_in?
+      redirect_to login_page
+      flash[:failure] = "Please log in"
+    else
+      @restaurant = Restaurant.find(params[:id])
+      if(@restaurant.id == current_restaurant.id)
+        flash[:success] = "You are editing your restaurant"
+      else # prevents you from editing other restaurants info
+        flash[:failure] = "Access denied. You can only edit your own restaurant."
+        redirect_to @current_restaurant
+      end
     end
   end
 

@@ -1,6 +1,11 @@
 class DineOutsController < ApplicationController
 	def index
-		@dine_outs = DineOut.all
+		if !signed_in?
+      		redirect_to login_page
+      		flash[:failure] = "Please log in"
+    	else
+			@dine_outs = DineOut.all
+		end
 	end
 
 	def show
@@ -8,7 +13,12 @@ class DineOutsController < ApplicationController
 	end
 
 	def new
-		@dine_out = DineOut.new
+		if !signed_in?
+      		redirect_to login_page
+      		flash[:failure] = "Please log in"
+    	else
+			@dine_out = DineOut.new
+		end
 	end
 
 	def create
@@ -33,7 +43,12 @@ class DineOutsController < ApplicationController
 	end
 
 	def edit
-		@dine_out = DineOut.find(params[:id])
+		if !signed_in?
+      		redirect_to login_page
+      		flash[:failure] = "Please log in"
+    	else
+			@dine_out = DineOut.find(params[:id])
+		end
 	end
 
 	def update
