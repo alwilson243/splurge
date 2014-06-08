@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       sign_in restaurant
       redirect_to restaurant
     else
-      flash.now[:error] = "Invalid credentials"
+      flash.now[:error] = "Invalid Credentials"
       render 'new'
     end
   end

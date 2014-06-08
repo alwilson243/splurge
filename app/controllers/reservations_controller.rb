@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
       def index   # home page of the blog
         if !signed_in?
           redirect_to login_page
-          flash[:failure] = "Please log in"
+          flash[:failure] = "Please Log In"
         else
           @reservations = Reservation.all
         end
@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
       def new     #  displays form to create a post
         if !signed_in?
           redirect_to login_page
-          flash[:failure] = "Please log in"
+          flash[:failure] = "Please Log In"
         else
           @reservation = Reservation.new
         end
@@ -82,7 +82,7 @@ class ReservationsController < ApplicationController
         
         if res_block_check(current_restaurant_id, editRes.time_start, editRes.party_size)
           if @reservation.update_attributes(reservation_params)
-            redirect_to reservations_path, :notice =>"Reservation updated"
+            redirect_to reservations_path, :notice =>"Reservation Updated"
           else
             render "edit", :notice => "There was an error trying to save the reservation"
           end
@@ -97,7 +97,7 @@ class ReservationsController < ApplicationController
       def destroy # deletes the post
         @reservation = Reservation.find(params[:id])
         @reservation.destroy
-        redirect_to reservations_path, :notice =>"Reservation deleted"
+        redirect_to reservations_path, :notice =>"Reservation Deleted"
       end 
      
 =begin 
@@ -134,7 +134,7 @@ class ReservationsController < ApplicationController
                         as well as three block times before and after block time, the method will 
                         also only accept quarter hour incremented time requests
       PRE-CONDITIONS  : User supplied data
-      POST-CONDITIONS : The method will know if a reservtation can be created with the time-block
+      POST-CONDITIONS : The method will know if a reservation can be created with the time-block
 
       RETURNS         : boolean
 
