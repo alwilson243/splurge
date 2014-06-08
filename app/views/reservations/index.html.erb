@@ -15,6 +15,10 @@
 <% if current_reservations.length == 0 %>
   <h3> No Reservations </h3>
 <% end %>
+<p>  Your specified reservation limit is
+  <%= current_restaurant.reserveCap %>.
+    You can edit this in your settings 
+</p>
 <hr>
 <center>
 <table>
